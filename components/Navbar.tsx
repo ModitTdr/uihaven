@@ -13,7 +13,7 @@ const Navbar = () => {
           <a href="/inspiration">Inspirations</a>
         </li>
         <li>
-          <a href="/fontfind">Font Find</a>
+          <a href="/fontpair">Font Pair</a>
         </li>
         <li>
           <a href="/">Moodboard</a>

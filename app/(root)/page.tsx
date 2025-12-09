@@ -2,7 +2,7 @@ import Button from "@/components/Button"
 
 const page = () => {
   return (
-    <section className="text-center h-[90vh] flex flex-col items-center justify-center gap-6 mx-6">
+    <section className="text-center min-h-[90vh] flex flex-col items-center justify-center gap-6 mx-6">
       <div>
         <h1 className="text-md sm:text-xl md:text-4xl font-medium text-primary">UIHAVEN</h1>
         <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter">
