@@ -12,7 +12,7 @@ const page = () => {
       <p className="text-xs sm:text-sm text-muted-foreground">
         Find your design inspiration, create moodboard, match perfect fonts and start designing.
       </p>
-      <Button>Get Started</Button>
+      <Button size="lg">Get Started</Button>
     </section>
 
   )

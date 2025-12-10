@@ -1,5 +1,5 @@
 type Props = {
-  rows: number
+  rows?: number
   fontSize: number
   fontFamily: string
   weight: number
@@ -11,7 +11,7 @@ const Textarea = ({ rows = 5, fontSize, fontFamily, weight, text, setText }: Pro
   return (
     <textarea
       rows={rows}
-      className={`w-full resize-none outline-none border-none p-0 focus:ring-0 placeholder-neutral-500 overflow-hidden`}
+      className="w-full resize-none outline-none border-none p-0 focus:ring-0 placeholder-neutral-500 overflow-hidden"
       style={{ fontSize: `${fontSize}px`, fontWeight: `${weight}`, fontFamily: `${fontFamily}` }}
       placeholder={text}
       value={text}
