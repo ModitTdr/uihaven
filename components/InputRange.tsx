@@ -1,10 +1,10 @@
 type Props = {
-  min?: number
-  max?: number
-  step?: number
-  value: number
-  onChange: (value: number) => void
-}
+  min?: number;
+  max?: number;
+  step?: number;
+  value: number;
+  onChange: (value: number) => void;
+};
 
 const InputRange = ({
   min = 1,
@@ -16,15 +16,14 @@ const InputRange = ({
   return (
     <input
       type="range"
-      id="size"
-      className="appearance-none bg-transparent cursor-pointer w-full"
+      className="bg-transparent cursor-pointer w-full"
       min={min}
       max={max}
       step={step}
       value={value}
-      onChange={(e) => onChange(parseInt(e.target.value))}
+      onChange={(e) => onChange(Number(e.target.value))}
     />
-  )
-}
+  );
+};
 
-export default InputRange
+export default InputRange;

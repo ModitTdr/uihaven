@@ -44,15 +44,17 @@ export default function FontControls({
   }, []);
 
   return (
-    <div className="px-6 py-3 space-y-4 border border-muted-background">
+    <div className="px-6 py-3 space-y-4 border-b border-muted-background">
       <div className="flex items-center justify-start gap-2">
-        <div className="bg-red-200 w-7 h-7 flex items-center justify-center rounded-md text-xs font-bold text-foreground/50">{label}</div>
+        <div className="bg-red-200 w-7 h-7 flex items-center justify-center rounded-md text-xs font-bold text-foreground/50">
+          {label}
+        </div>
         <h2>{title}</h2>
       </div>
       <select
         className="w-full border border-background text-muted-foreground text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5"
         value={fontFamily}
-        onChange={e => setFontFamily(e.target.value)}
+        onChange={(e) => setFontFamily(e.target.value)}
       >
         <option value="Poppins">Poppins</option>
         <option value="serif">Serif</option>
@@ -61,7 +63,9 @@ export default function FontControls({
       </select>
 
       <div className="pb-3 flex flex-col">
-        <span className="text-xs text-muted-foreground pointer-events-none">Font Size</span>
+        <span className="text-xs text-muted-foreground pointer-events-none">
+          Font Size
+        </span>
         <InputRange
           min={label === "H1" ? 36 : 12}
           max={label === "H1" ? maxFontSize : 32}
@@ -69,13 +73,18 @@ export default function FontControls({
           value={fontSize}
           onChange={setFontSize}
         />
-        <div id="size" className="w-full flex justify-between text-xs text-muted-foreground pointer-events-none">
+        <div
+          id="size"
+          className="w-full flex justify-between text-xs text-muted-foreground pointer-events-none"
+        >
           <span>{label === "H1" ? 36 : 12}px</span>
           <span>{maxFontSize}px</span>
         </div>
       </div>
       <div className="pb-3 flex flex-col">
-        <span className="text-xs text-muted-foreground pointer-events-none">Font Weight</span>
+        <span className="text-xs text-muted-foreground pointer-events-none">
+          Font Weight
+        </span>
         <InputRange
           min={300}
           max={700}
@@ -83,13 +92,14 @@ export default function FontControls({
           value={fontWeight}
           onChange={setFontWeight}
         />
-        <div id="size" className="w-full flex justify-between text-xs text-muted-foreground pointer-events-none">
+        <div
+          id="size"
+          className="w-full flex justify-between text-xs text-muted-foreground pointer-events-none"
+        >
           <span>300</span>
           <span>700</span>
         </div>
-
       </div>
     </div>
-
   );
 }
