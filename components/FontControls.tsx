@@ -1,6 +1,5 @@
-"use client";
-
 import { useEffect, useState } from "react";
+import { font_families } from "@/data/fonts";
 import InputRange from "./InputRange";
 
 type Props = {
@@ -10,6 +9,8 @@ type Props = {
   setFontSize: (v: number) => void;
   fontWeight: number;
   setFontWeight: (v: number) => void;
+  letterSpace: number;
+  setLetterSpace: (v: number) => void;
   label: string;
   title: string;
 };
@@ -21,10 +22,15 @@ export default function FontControls({
   setFontSize,
   fontWeight,
   setFontWeight,
+  letterSpace,
+  setLetterSpace,
   label,
   title,
 }: Props) {
   const [maxFontSize, setMaxFontSize] = useState(96);
+  const minFontWeight = 300, maxFontWeight = 700, stepFontWeight = 100;
+  const minLetterSpace = -0.1, maxLetterSpace = 0.1, stepLetterSpace = 0.01;
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -56,10 +62,11 @@ export default function FontControls({
         value={fontFamily}
         onChange={(e) => setFontFamily(e.target.value)}
       >
-        <option value="Poppins">Poppins</option>
-        <option value="serif">Serif</option>
-        <option value="sans-serif">Sans-Serif</option>
-        <option value="monospace">Monospace</option>
+        {
+          font_families.map((font) => (
+            <option key={font.name} value={font.value}>{font.name}</option>
+          ))
+        }
       </select>
 
       <div className="pb-3 flex flex-col">
@@ -86,9 +93,9 @@ export default function FontControls({
           Font Weight
         </span>
         <InputRange
-          min={300}
-          max={700}
-          step={100}
+          min={minFontWeight}
+          max={maxFontWeight}
+          step={stepFontWeight}
           value={fontWeight}
           onChange={setFontWeight}
         />
@@ -96,8 +103,27 @@ export default function FontControls({
           id="size"
           className="w-full flex justify-between text-xs text-muted-foreground pointer-events-none"
         >
-          <span>300</span>
-          <span>700</span>
+          <span>{minFontWeight}</span>
+          <span>{maxFontWeight}</span>
+        </div>
+      </div>
+      <div className="pb-3 flex flex-col">
+        <span className="text-xs text-muted-foreground pointer-events-none">
+          Letter Spacing
+        </span>
+        <InputRange
+          min={minLetterSpace}
+          max={maxLetterSpace}
+          step={stepLetterSpace}
+          value={letterSpace}
+          onChange={setLetterSpace}
+        />
+        <div
+          id="size"
+          className="w-full flex justify-between text-xs text-muted-foreground pointer-events-none"
+        >
+          <span>{minLetterSpace}em</span>
+          <span>{maxLetterSpace}em</span>
         </div>
       </div>
     </div>

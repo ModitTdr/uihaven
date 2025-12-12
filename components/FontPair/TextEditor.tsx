@@ -5,7 +5,7 @@ type Props = {
   header: FontReturn,
   paragraph: FontReturn,
 }
-const FontEditor = ({ header, paragraph }: Props) => {
+const TextEditor = ({ header, paragraph }: Props) => {
   return (
     <div className="text-center space-y-4">
       <div className="h-[45vh] md:h-[70vh] rounded-2xl bg-white/60 overflow-y-scroll shadow-lg border border-neutral-300">
@@ -24,6 +24,7 @@ const FontEditor = ({ header, paragraph }: Props) => {
             weight={header.weight}
             text={header.text}
             setText={header.setText}
+            letterSpacing={header.space}
           />
           <Textarea
             fontSize={paragraph.size}
@@ -31,7 +32,7 @@ const FontEditor = ({ header, paragraph }: Props) => {
             weight={paragraph.weight}
             text={paragraph.text}
             setText={paragraph.setText}
-
+            letterSpacing={paragraph.space}
           />
         </div>
       </div>
@@ -42,4 +43,4 @@ const FontEditor = ({ header, paragraph }: Props) => {
   )
 }
 
-export default FontEditor
+export default TextEditor;

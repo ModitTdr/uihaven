@@ -26,6 +26,8 @@ const FontSetting = ({ header, paragraph }: Props) => {
           setFontSize={header.setSize}
           fontWeight={header.weight}
           setFontWeight={header.setWeight}
+          letterSpace={header.space}
+          setLetterSpace={header.setLetterSpace}
         />
         <FontControls
           label="P"
@@ -36,6 +38,8 @@ const FontSetting = ({ header, paragraph }: Props) => {
           setFontSize={paragraph.setSize}
           fontWeight={paragraph.weight}
           setFontWeight={paragraph.setWeight}
+          letterSpace={paragraph.space}
+          setLetterSpace={paragraph.setLetterSpace}
         />
         <div className="gap-2 h-fit mx-2 my-2 flex flex-wrap justify-center">
           <Button variant="outline" size="sm" title="Shuffle Fonts">

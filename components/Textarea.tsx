@@ -7,6 +7,7 @@ type Props = {
   weight: number;
   text: string;
   setText: (text: string) => void;
+  letterSpacing?: number;
 };
 
 const Textarea = ({
@@ -14,6 +15,7 @@ const Textarea = ({
   fontSize,
   fontFamily,
   weight,
+  letterSpacing,
   text,
   setText,
 }: Props) => {
@@ -21,7 +23,7 @@ const Textarea = ({
     <textarea
       rows={rows}
       className="w-full resize-none outline-none border-none p-0 focus:ring-0 placeholder-neutral-500 overflow-hidden"
-      style={{ fontSize, fontFamily, fontWeight: weight }}
+      style={{ fontSize, fontFamily, fontWeight: weight, letterSpacing: `${letterSpacing}em` }}
       value={text}
       onChange={(e) => setText(e.target.value)}
     />
