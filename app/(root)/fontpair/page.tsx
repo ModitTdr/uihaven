@@ -5,20 +5,28 @@ import useFont from "@/hooks/useFont";
 
 const Page = () => {
   const header = useFont({
-    fontFamily: "Poppins",
+    fontFamily: {
+      name: "Poppins",
+      family: "Poppins",
+      category: "sans-serif",
+      weights: [300, 400, 500, 600, 700],
+    },
     fontSize: 48,
-    fontWeight: 700,
+    fontWeight: 600,
     letterSpace: 0.01,
     displayText: "Typography",
   });
   const paragraph = useFont({
-    fontFamily: "Monospace",
+    fontFamily: {
+      name: "Montserrat",
+      family: "Montserrat",
+      category: "sans-serif",
+      weights: [400, 500, 600, 700],
+    },
     fontSize: 16,
-    fontWeight: 300,
     letterSpace: -0.025,
     displayText: "This is a long Typography sentence",
   });
-
   return (
     <div className="min-h-[90vh] mx-2 sm:mx-6 py-1 gap-1 grid grid-cols-1 md:grid-cols-[65%_1fr] lg:grid-cols-[72%_1fr] overflow-hidden">
       {/* left- text_editor */}

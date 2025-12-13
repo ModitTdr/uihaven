@@ -2,12 +2,18 @@ import { Heart, Palette, ShuffleIcon } from "lucide-react"
 import FontControls from "../FontControls"
 import Button from "../Button"
 import { FontReturn } from "@/hooks/useFont";
+import { fontFamilies } from "@/data/fonts";
 
 type Props = {
   header: FontReturn,
   paragraph: FontReturn,
 }
 const FontSetting = ({ header, paragraph }: Props) => {
+  const shuffleFonts = () => {
+    const fonts = fontFamilies;
+    header.setNewFamily(fonts[Math.floor(Math.random() * fonts.length)]);
+    paragraph.setNewFamily(fonts[Math.floor(Math.random() * fonts.length)]);
+  }
   return (
     <aside className="rounded-2xl bg-white/60 overflow-hidden shadow-lg border border-neutral-300 text-foreground/80 w-full md:max-w-xs flex flex-col-reverse md:flex-col justify-self-center">
       <div className="flex items-center justify-between border-t md:border-b border-neutral-200 shadow-sm px-6 py-3">
@@ -20,10 +26,11 @@ const FontSetting = ({ header, paragraph }: Props) => {
         <FontControls
           label="H1"
           title="Header"
-          fontFamily={header.family}
-          setFontFamily={header.setFamily}
+          fontFamily={header.family.family}
+          setNewFamily={header.setNewFamily}
           fontSize={header.size}
           setFontSize={header.setSize}
+          fontWeights={header.family.weights}
           fontWeight={header.weight}
           setFontWeight={header.setWeight}
           letterSpace={header.space}
@@ -32,17 +39,18 @@ const FontSetting = ({ header, paragraph }: Props) => {
         <FontControls
           label="P"
           title="Paragraph"
-          fontFamily={paragraph.family}
-          setFontFamily={paragraph.setFamily}
+          fontFamily={paragraph.family.family}
+          setNewFamily={paragraph.setNewFamily}
           fontSize={paragraph.size}
           setFontSize={paragraph.setSize}
+          fontWeights={paragraph.family.weights}
           fontWeight={paragraph.weight}
           setFontWeight={paragraph.setWeight}
           letterSpace={paragraph.space}
           setLetterSpace={paragraph.setLetterSpace}
         />
         <div className="gap-2 h-fit mx-2 my-2 flex flex-wrap justify-center">
-          <Button variant="outline" size="sm" title="Shuffle Fonts">
+          <Button variant="outline" size="sm" title="Shuffle Fonts" onClick={shuffleFonts}>
             <ShuffleIcon size={14} />
             Shuffle Fonts
           </Button>

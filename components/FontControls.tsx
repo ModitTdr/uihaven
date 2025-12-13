@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
-import { font_families } from "@/data/fonts";
+import { fontFamilies } from "@/data/fonts";
 import InputRange from "./InputRange";
 
+export type fontFamilyType = {
+  name: string,
+  family: string,
+  category: string,
+  weights: number[]
+}
 type Props = {
   fontFamily: string;
-  setFontFamily: (v: string) => void;
+  setNewFamily: (v: fontFamilyType) => void;
   fontSize: number;
   setFontSize: (v: number) => void;
+  fontWeights: number[];
   fontWeight: number;
   setFontWeight: (v: number) => void;
   letterSpace: number;
@@ -17,9 +24,10 @@ type Props = {
 
 export default function FontControls({
   fontFamily,
-  setFontFamily,
+  setNewFamily,
   fontSize,
   setFontSize,
+  fontWeights,
   fontWeight,
   setFontWeight,
   letterSpace,
@@ -28,13 +36,13 @@ export default function FontControls({
   title,
 }: Props) {
   const [maxFontSize, setMaxFontSize] = useState(96);
-  const minFontWeight = 300, maxFontWeight = 700, stepFontWeight = 100;
+  const minFontWeight = Math.min(...fontWeights), maxFontWeight = Math.max(...fontWeights), stepFontWeight = 100;
   const minLetterSpace = -0.1, maxLetterSpace = 0.1, stepLetterSpace = 0.01;
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setMaxFontSize(48);
+        setMaxFontSize(52);
       } else if (window.innerWidth < 1024) {
         setMaxFontSize(72);
       } else {
@@ -60,15 +68,21 @@ export default function FontControls({
       <select
         className="w-full border border-background text-muted-foreground text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5"
         value={fontFamily}
-        onChange={(e) => setFontFamily(e.target.value)}
+        onChange={(e) => {
+          const font = fontFamilies.find((font) => font.family === e.target.value);
+          if (font) {
+            setNewFamily(font);
+          }
+        }}
       >
         {
-          font_families.map((font) => (
-            <option key={font.name} value={font.value}>{font.name}</option>
+          fontFamilies.map((font) => (
+            <option key={font.name} value={font.family}>{font.name}</option>
           ))
         }
       </select>
 
+      {/* font size */}
       <div className="pb-3 flex flex-col">
         <span className="text-xs text-muted-foreground pointer-events-none">
           Font Size
@@ -88,6 +102,7 @@ export default function FontControls({
           <span>{maxFontSize}px</span>
         </div>
       </div>
+      {/* font weight */}
       <div className="pb-3 flex flex-col">
         <span className="text-xs text-muted-foreground pointer-events-none">
           Font Weight
@@ -107,6 +122,7 @@ export default function FontControls({
           <span>{maxFontWeight}</span>
         </div>
       </div>
+      {/* letter spacing */}
       <div className="pb-3 flex flex-col">
         <span className="text-xs text-muted-foreground pointer-events-none">
           Letter Spacing

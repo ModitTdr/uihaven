@@ -31,17 +31,13 @@ const Button = ({ children, variant = "default", size = "md", className, ...prop
         )
       )}
     >
-      <a
-        href="/"
-      >
-        <p className="transition-all duration-400 ease-in-out group-hover:text-white relative z-10 flex items-center gap-1.5">
-          {children}
-        </p>
-        <div
-          className="absolute h-full w-full -left-full bottom-0 bg-primary rounded-4xl transition-all duration-400 ease-in-out
+      <p className="transition-all duration-400 ease-in-out group-hover:text-white relative z-10 flex items-center gap-1.5">
+        {children}
+      </p>
+      <div
+        className="absolute h-full w-full -left-full bottom-0 bg-primary rounded-4xl transition-all duration-400 ease-in-out
           group-hover:left-0 group-hover:rounded-none z-0"
-        />
-      </a>
+      />
     </button>
   )
 }

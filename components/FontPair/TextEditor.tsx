@@ -20,7 +20,7 @@ const TextEditor = ({ header, paragraph }: Props) => {
           <Textarea
             rows={1}
             fontSize={header.size}
-            fontFamily={header.family}
+            fontFamily={header.family.family}
             weight={header.weight}
             text={header.text}
             setText={header.setText}
@@ -28,7 +28,7 @@ const TextEditor = ({ header, paragraph }: Props) => {
           />
           <Textarea
             fontSize={paragraph.size}
-            fontFamily={paragraph.family}
+            fontFamily={paragraph.family.family}
             weight={paragraph.weight}
             text={paragraph.text}
             setText={paragraph.setText}
