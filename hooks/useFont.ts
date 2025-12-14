@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useCallback, useMemo } from "react"
 
 export type fontFamilyType = {
   name: string,
@@ -38,15 +38,17 @@ const useFont = ({ fontFamily, fontSize, fontWeight, letterSpace, displayText }:
   const [text, setText] = useState(displayText);
   const [space, setLetterSpace] = useState(letterSpace);
 
-  const setNewFamily = (newFont: fontFamilyType) => {
+  const setNewFamily = useCallback((newFont: fontFamilyType) => {
     setFamily(newFont);
 
     if (!newFont.weights.includes(weight)) {
       setWeight(newFont.weights[0]);
     }
-  };
+  }, [weight]);
 
-  return { family, setNewFamily, size, setSize, weight, setWeight, text, setText, space, setLetterSpace };
+  return useMemo(() => ({
+    family, setNewFamily, size, setSize, weight, setWeight, text, setText, space, setLetterSpace
+  }), [family, setNewFamily, size, weight, text, space]);
 };
 export default useFont;
 

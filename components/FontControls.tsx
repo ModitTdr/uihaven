@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { fontFamilies } from "@/data/fonts";
 import InputRange from "./InputRange";
 
@@ -22,7 +22,7 @@ type Props = {
   title: string;
 };
 
-export default function FontControls({
+const FontControls = ({
   fontFamily,
   setNewFamily,
   fontSize,
@@ -34,11 +34,9 @@ export default function FontControls({
   setLetterSpace,
   label,
   title,
-}: Props) {
+}: Props) => {
   const [maxFontSize, setMaxFontSize] = useState(96);
-  const minFontWeight = Math.min(...fontWeights), maxFontWeight = Math.max(...fontWeights), stepFontWeight = 100;
   const minLetterSpace = -0.1, maxLetterSpace = 0.1, stepLetterSpace = 0.01;
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
@@ -56,31 +54,82 @@ export default function FontControls({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const getWeightNames = (weight: number) => {
+    switch (weight) {
+      case 200:
+        return "Extra Light";
+      case 300:
+        return "Light";
+      case 400:
+        return "Regular";
+      case 500:
+        return "Medium";
+      case 600:
+        return "Semi Bold";
+      case 700:
+        return "Bold";
+    }
+  }
 
   return (
     <div className="px-6 py-3 space-y-4 border-b border-muted-background">
       <div className="flex items-center justify-start gap-2">
-        <div className="bg-red-200 w-7 h-7 flex items-center justify-center rounded-md text-xs font-bold text-foreground/50">
+        <div className="bg-red-200 w-6 h-6 flex items-center justify-center rounded-md text-xs font-bold text-foreground/50">
           {label}
         </div>
-        <h2>{title}</h2>
+        <h2 className="text-sm">{title}</h2>
       </div>
-      <select
-        className="w-full border border-background text-muted-foreground text-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5"
-        value={fontFamily}
-        onChange={(e) => {
-          const font = fontFamilies.find((font) => font.family === e.target.value);
-          if (font) {
-            setNewFamily(font);
-          }
-        }}
-      >
-        {
-          fontFamilies.map((font) => (
-            <option key={font.name} value={font.family}>{font.name}</option>
-          ))
-        }
-      </select>
+      <div className="flex gap-2 justify-between">
+        {/* font family */}
+        <div className="w-full">
+          <label
+            htmlFor="weight"
+            className="text-xs text-muted-foreground"
+          >Font Family</label>
+          <select
+            className="w-full border border-background text-muted-foreground text-xs rounded-lg focus:ring-primary focus:border-primary block p-2.5"
+            value={fontFamily}
+            onChange={(e) => {
+              const font = fontFamilies.find((font) => font.family === e.target.value);
+              if (font) {
+                setNewFamily(font);
+              }
+            }}
+          >
+            {
+              fontFamilies.map((font) => (
+                <option key={font.name} value={font.family}>{font.name}</option>
+              ))
+            }
+          </select>
+        </div>
+        {/* font weight */}
+        <div className="w-full">
+          <label
+            htmlFor="weight"
+            className="text-xs text-muted-foreground"
+          >
+            Font Weight
+          </label>
+          <select
+            id="weight"
+            className="w-full border border-background text-muted-foreground text-xs rounded-lg focus:ring-primary focus:border-primary block p-2.5"
+            value={fontWeight}
+            onChange={(e) => setFontWeight(Number(e.target.value))}
+          >
+            {
+              fontWeights.map((weight) => (
+                <option
+                  key={weight}
+                  value={weight}
+                >
+                  {getWeightNames(weight)}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+      </div>
 
       {/* font size */}
       <div className="pb-3 flex flex-col">
@@ -100,26 +149,6 @@ export default function FontControls({
         >
           <span>{label === "H1" ? 36 : 12}px</span>
           <span>{maxFontSize}px</span>
-        </div>
-      </div>
-      {/* font weight */}
-      <div className="pb-3 flex flex-col">
-        <span className="text-xs text-muted-foreground pointer-events-none">
-          Font Weight
-        </span>
-        <InputRange
-          min={minFontWeight}
-          max={maxFontWeight}
-          step={stepFontWeight}
-          value={fontWeight}
-          onChange={setFontWeight}
-        />
-        <div
-          id="size"
-          className="w-full flex justify-between text-xs text-muted-foreground pointer-events-none"
-        >
-          <span>{minFontWeight}</span>
-          <span>{maxFontWeight}</span>
         </div>
       </div>
       {/* letter spacing */}
@@ -144,4 +173,6 @@ export default function FontControls({
       </div>
     </div>
   );
-}
+};
+
+export default memo(FontControls);

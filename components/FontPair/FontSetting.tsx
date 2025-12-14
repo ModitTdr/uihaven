@@ -3,17 +3,18 @@ import FontControls from "../FontControls"
 import Button from "../Button"
 import { FontReturn } from "@/hooks/useFont";
 import { fontFamilies } from "@/data/fonts";
+import { useCallback } from "react";
 
 type Props = {
   header: FontReturn,
   paragraph: FontReturn,
 }
 const FontSetting = ({ header, paragraph }: Props) => {
-  const shuffleFonts = () => {
+  const shuffleFonts = useCallback(() => {
     const fonts = fontFamilies;
     header.setNewFamily(fonts[Math.floor(Math.random() * fonts.length)]);
     paragraph.setNewFamily(fonts[Math.floor(Math.random() * fonts.length)]);
-  }
+  }, [header, paragraph]);
   return (
     <aside className="rounded-2xl bg-white/60 overflow-hidden shadow-lg border border-neutral-300 text-foreground/80 w-full md:max-w-xs flex flex-col-reverse md:flex-col justify-self-center">
       <div className="flex items-center justify-between border-t md:border-b border-neutral-200 shadow-sm px-6 py-3">
