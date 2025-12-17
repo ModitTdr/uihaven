@@ -89,6 +89,7 @@ const FontControls = ({
           <select
             className="w-full border border-background text-muted-foreground text-xs rounded-lg focus:ring-primary focus:border-primary block p-2.5"
             value={fontFamily}
+            aria-label={`Select font family for ${label}`}
             onChange={(e) => {
               const font = fontFamilies.find((font) => font.family === e.target.value);
               if (font) {
@@ -115,6 +116,7 @@ const FontControls = ({
             id="weight"
             className="w-full border border-background text-muted-foreground text-xs rounded-lg focus:ring-primary focus:border-primary block p-2.5"
             value={fontWeight}
+            aria-label={`Select font weight for ${label}`}
             onChange={(e) => setFontWeight(Number(e.target.value))}
           >
             {

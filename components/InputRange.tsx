@@ -21,6 +21,7 @@ const InputRange = ({
       max={max}
       step={step}
       value={value}
+      aria-label="Range input"
       onChange={(e) => onChange(Number(e.target.value))}
     />
   );

@@ -1,7 +1,25 @@
-const page = () => {
+"use client";
+import DragableImg from "@/components/DragableImg";
+import Dropzone from "@/components/Dropzone"
+import { useState } from "react";
+
+const Page = () => {
+  const [images, setImages] = useState<string[]>([]);
   return (
-    <div className="text-8xl flex items-center justify-center h-[90vh]">Comming Soon</div>
+    <div className="min-h-[90vh] flex justify-start items-center p-6 flex-col gap-4 container mx-auto">
+
+
+      <Dropzone setItems={setImages} />
+      <div className="flex-1 w-full border border-foreground/20 rounded-md overflow-hidden shadow-xl relative p-4">
+        {
+          images.map((image, index) => (
+            <DragableImg img={image} key={index} />
+          ))
+        }
+      </div>
+
+    </div>
   )
 }
 
-export default page
+export default Page;
