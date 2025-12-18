@@ -7,10 +7,8 @@ const Page = () => {
   const [images, setImages] = useState<string[]>([]);
   return (
     <div className="min-h-[90vh] flex justify-start items-center p-6 flex-col gap-4 container mx-auto">
-
-
-      <Dropzone setItems={setImages} />
-      <div className="flex-1 w-full border border-foreground/20 rounded-md overflow-hidden shadow-xl relative p-4">
+      <Dropzone images={images} setItems={setImages} disabled={images.length >= 8} />
+      <div className="flex-1 w-full border border-foreground/20 rounded-md px-5 py-4 overflow-hidden">
         {
           images.map((image, index) => (
             <DragableImg img={image} key={index} />
