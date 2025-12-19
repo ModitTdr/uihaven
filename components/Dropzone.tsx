@@ -58,7 +58,7 @@ const Dropzone = ({ images, setItems, disabled = false }: DropzoneProps) => {
       />
       {
         isDragActive ? (
-          <div className='flex items-center justify-between gap-2 w-full min-w-md'>
+          <div className='flex items-center justify-between gap-2 w-full min-w-xs max-w-2xl'>
             <p
               className={`text-xs text-muted-foreground border border-muted-foreground/20 rounded-md px-5 py-2.5 flex-1 ${disabled && 'bg-muted-foreground/10 cursor-not-allowed'}`}
             >
@@ -67,7 +67,7 @@ const Dropzone = ({ images, setItems, disabled = false }: DropzoneProps) => {
             <Button size="sm" className='px-6' variant={`${disabled ? 'disabled' : 'default'}`}>Upload</Button>
           </div>
         ) : (
-          <div className='flex items-center justify-between gap-2 w-full min-w-md'>
+          <div className='flex items-center justify-between gap-2 w-full min-w-xs max-w-2xl'>
             <p
               className={`text-xs text-muted-foreground border border-muted-foreground/20 rounded-md px-5 py-2.5 flex-1 ${disabled && 'bg-muted-foreground/10 cursor-not-allowed'}`}
             >

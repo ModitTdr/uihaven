@@ -15,6 +15,7 @@ import {
   Nunito,
   PT_Sans
 } from 'next/font/google'
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const roboto = Roboto({ weight: ['300', '400', '700'], subsets: ['latin'], variable: '--font-roboto' })
@@ -58,11 +59,23 @@ ${inter.variable}
 antialiased
 `}
       >
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              borderRadius: "99px",
+              padding: "8px 12px 8px 18px",
+              borderBottom: "1px solid rgba(40, 70, 255, 0.4)",
+              borderLeft: "1px solid rgba(40, 70, 255, 0.3)",
+              borderRight: "1px solid rgba(40, 70, 255, 0.3)",
+            }
+          }}
+        />
         <header>
           <Navbar />
         </header>
 
-        <main className="bg-background text-foreground min-h-screen pt-[10vh]">
+        <main className="bg-linear-to-b from-background to-primary/10 text-foreground min-h-dvh pt-[10vh]">
           {children}
         </main>
       </body>

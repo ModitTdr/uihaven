@@ -28,7 +28,7 @@ const Page = () => {
     displayText: "This is a long Typography sentence",
   });
   return (
-    <div className="min-h-[90vh] mx-2 sm:mx-6 py-1 gap-1 grid grid-cols-1 md:grid-cols-[65%_1fr] lg:grid-cols-[72%_1fr] overflow-hidden">
+    <div className="min-h-[90dvh] mx-2 sm:mx-6 py-1 gap-1 grid grid-cols-1 md:grid-cols-[65%_1fr] lg:grid-cols-[72%_1fr] overflow-hidden">
       {/* left- text_editor */}
       <TextEditor header={header} paragraph={paragraph} />
       {/* right */}

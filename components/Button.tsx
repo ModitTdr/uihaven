@@ -17,8 +17,8 @@ const Button = ({ children, variant = "default", size = "md", className, ...prop
   const sizeStyles = {
     icon: "p-1.5",
     sm: "px-4 h-9 text-sm rounded-md",
-    md: "px-6 h-10 text-lg",
-    lg: "px-8 h-12 text-md",
+    md: "px-6 h-10 text-md",
+    lg: "px-6 h-11 sm:px-8 sm:h-12 text-md",
   }
 
   return (
