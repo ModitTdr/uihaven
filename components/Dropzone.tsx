@@ -4,9 +4,13 @@ import { useDropzone } from 'react-dropzone'
 import Button from './Button';
 import { setTimeout } from 'timers';
 
+export interface imageObjectType {
+  id: string;
+  img: string;
+};
 interface DropzoneProps {
-  images: string[];
-  setItems: React.Dispatch<React.SetStateAction<string[]>>;
+  images: imageObjectType[];
+  setItems: React.Dispatch<React.SetStateAction<imageObjectType[]>>;
   disabled?: boolean;
 }
 
@@ -30,10 +34,15 @@ const Dropzone = ({ images, setItems, disabled = false }: DropzoneProps) => {
       return;
     }
     setError(null);
+
     if (acceptedFiles) {
       acceptedFiles.forEach(file => {
         const objectUrl = URL.createObjectURL(file);
-        setItems((prev: string[]) => [...prev, objectUrl]);
+        const imgObj = {
+          id: crypto.randomUUID(),
+          img: objectUrl
+        };
+        setItems((prev: imageObjectType[]) => [...prev, imgObj]);
 
         return () => {
           URL.revokeObjectURL(objectUrl);
