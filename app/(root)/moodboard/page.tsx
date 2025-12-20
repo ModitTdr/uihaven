@@ -25,7 +25,7 @@ const Page = () => {
       </div>
 
       <span className="text-xs text-muted-foreground text-center">
-        Images are resizable and draggable.
+        Images are resizable and draggable. You can preview by double tapping the image.
       </span>
     </div>
   );

@@ -18,6 +18,8 @@ const DragableImg = ({
 }: DragableImgProp) => {
   const [size, setSize] = useState({ width: 300, height: 300 });
   const lastTapRef = useRef(0);
+
+  //handle Image Loading Size
   const handleImgLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const aspect = img.naturalWidth / img.naturalHeight;
@@ -28,6 +30,7 @@ const DragableImg = ({
     setSize({ width, height });
   }
 
+  //handle double tap
   const handleDoubleTap = () => {
     const now = Date.now();
     const DOUBLE_TAP_DELAY = 300;
@@ -94,11 +97,11 @@ const DragableImg = ({
           onLoad={handleImgLoad}
         />
         <div
-          className="absolute top-0 left-0 bg-red-500/80 rounded-tl-none rounded-lg text-white p-1 cursor-pointer shadow-md backdrop-blur-xl"
+          className="absolute top-0 left-0 bg-red-500/80 rounded-tl-none rounded-lg text-white p-0.5 cursor-pointer shadow-md backdrop-blur-xl"
           onClick={() => delImg(imgObj.id)}
           onTouchStart={() => delImg(imgObj.id)}
         >
-          <X size={16} />
+          <X size={15} />
         </div>
       </div>
     </Rnd>
