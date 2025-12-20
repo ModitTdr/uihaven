@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# UIHAVEN
+Uihaven is a project for designers and developers.<br/>
+It helps you find sweet font combinations and canvas to dump all your inspirations.<br/>
+Plan and Start Designing.<br/>
+🌐 [UI haven](https://uihaven-design.vercel.app/)<br/>
 
-First, run the development server:
+</div>
+___
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Introduction
+UI haven is a project I've develop that helps in planning and designing. It provides font pairing which helps you to find find that complements!😉. Moodboard is another feature that provides a canvas to collect images in one place.
+___
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Problem Statement
+I have a love for design and for planning a project and I have not been able to find a tool that helps me to plan and design.
+Pairing right that perfectlly complements is something that I have not been able to do. And also I have not been able to find a tool that helps me to collect images in one place.
+___
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✅ Challanges Solved
+Uihaven aims to solve these problem by offering:
+- Live Font pairing previews with realtime control over the text and fonts
+- Moodboard to collect images in one place
+___
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features
+### Font Pairing
+- Live Font pairing previews
+- Shuffle Fonts
+- Realtime control over the text and fonts
 
-## Learn More
+### Moodboard
+- Upload multiple images
+- Drag and drop to upload images
+- Resize and Rearrange the images
+___
 
-To learn more about Next.js, take a look at the following resources:
+## Current Limitation
+- No authentication
+- No database
+- Data are not persistent and lacks saving options
+- Responsiveness needs more refinement
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future Improvements
+- Authentication
+- Database
+- Saving options
+- Implement AI for font pairing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Screenshots
+![Font Pair](public/fontPairing.png)
+![Moodboard](public/Moodboard.png)
