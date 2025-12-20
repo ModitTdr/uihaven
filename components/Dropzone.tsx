@@ -60,7 +60,6 @@ const Dropzone = ({ images, setItems, disabled = false }: DropzoneProps) => {
       }
       <input
         {...getInputProps()}
-        className="cursor-crosshair"
         disabled={disabled}
         title={disabled ? "Only 8 images allowed" : "Drag or click to upload image"}
         aria-label="Dropzone for uploading images"
