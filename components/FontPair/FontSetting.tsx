@@ -1,4 +1,4 @@
-import { Heart, Palette, ShuffleIcon } from "lucide-react"
+import { Palette, ShuffleIcon } from "lucide-react"
 import FontControls from "../FontControls"
 import Button from "../Button"
 import { FontReturn } from "@/hooks/useFont";
@@ -55,13 +55,15 @@ const FontSetting = ({ header, paragraph }: Props) => {
             <ShuffleIcon size={14} />
             Shuffle Fonts
           </Button>
-          <Button size="sm" title="Save Font Pair">
+          {/*
+            <Button size="sm" title="Save Font Pair">
             <Heart
               size={16}
               className="group-hover:fill-white group-hover:text-transparent"
             />
-            Save Pair
-          </Button>
+              Save Pair
+            </Button>
+          */}
         </div>
       </div>
     </aside>

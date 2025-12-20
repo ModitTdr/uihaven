@@ -2,18 +2,24 @@
 import { Rnd } from "react-rnd";
 import { imageObjectType } from "./Dropzone";
 import { ArrowDownRight, X } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import Image from "next/image";
 
 interface DragableImgProp {
   imgObj: imageObjectType;
   delImg: (id: string) => void;
+  setSelectedImg?: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const DragableImg = ({
   imgObj,
-  delImg
+  delImg,
+  setSelectedImg,
 }: DragableImgProp) => {
   const [size, setSize] = useState({ width: 300, height: 300 });
+  const lastTapRef = useRef(0);
+
+  //handle Image Loading Size
   const handleImgLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const aspect = img.naturalWidth / img.naturalHeight;
@@ -24,12 +30,24 @@ const DragableImg = ({
     setSize({ width, height });
   }
 
+  //handle double tap
+  const handleDoubleTap = () => {
+    const now = Date.now();
+    const DOUBLE_TAP_DELAY = 300;
+
+    if (now - lastTapRef.current < DOUBLE_TAP_DELAY) {
+      if (setSelectedImg) {
+        setSelectedImg(imgObj.img);
+      }
+    }
+    lastTapRef.current = now;
+  };
   return (
     <Rnd
       lockAspectRatio
       bounds="parent"
       size={{ width: size.width, height: size.height }}
-      onResizeStop={(e, direction, ref) => {
+      onResizeStop={(_e, _, ref) => {
         setSize({
           width: ref.offsetWidth,
           height: ref.offsetHeight,
@@ -64,20 +82,26 @@ const DragableImg = ({
         ),
       }}
     >
-      <div className="relative w-full h-full" >
-        <img
+      <div
+        className="relative w-full h-full"
+        onDoubleClick={() => setSelectedImg && setSelectedImg(imgObj.img)}
+        onTouchEnd={handleDoubleTap}
+      >
+        <Image
           src={imgObj.img}
           alt="Draggable Image"
           draggable={false}
+          width={size.width}
+          height={size.height}
           className="w-full h-full object-cover pointer-events-none select-none"
           onLoad={handleImgLoad}
         />
         <div
-          className="absolute top-0 left-0 bg-red-500/80 rounded-tl-none rounded-lg text-white p-1 cursor-pointer shadow-md backdrop-blur-xl"
+          className="absolute top-0 left-0 bg-red-500/80 rounded-tl-none rounded-lg text-white p-0.5 cursor-pointer shadow-md backdrop-blur-xl"
           onClick={() => delImg(imgObj.id)}
           onTouchStart={() => delImg(imgObj.id)}
         >
-          <X size={16} />
+          <X size={15} />
         </div>
       </div>
     </Rnd>
